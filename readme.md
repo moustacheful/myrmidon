@@ -6,7 +6,7 @@ A dead-simple, tiny task executor for Rofi.
 
 Myrmidon executes tasks for you, displaying something similar to modern text editor's command palette. You define the task names and commands, and let myrmidon make a fuzzy search list to select and execute tasks.
 
-<img src="https://user-images.githubusercontent.com/4857535/50374227-a49f9d00-05c9-11e9-8179-4bd02b5929fa.gif"/>
+<img align="center" alt="demo" src="https://user-images.githubusercontent.com/4857535/50374333-3d82e800-05cb-11e9-8f14-1338cac3d290.gif"/>
 
 ## Why
 
