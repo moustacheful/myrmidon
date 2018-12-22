@@ -19,10 +19,11 @@ Myrmidon currently depends on:
 - [Rofi](https://github.com/DaveDavenport/rofi)
 - [jq](https://stedolan.github.io/jq/)
 
-## How-to
+## Installation / defining tasks
+
+Copy both shell scripts in the same directory (e.g: ~/bin)
 
 Define your tasks in `.myrmidon-tasks.json` in your home directory.
-
 Each task is comprised of a `name`, `command` and whether or not it needs a confirmation screen (`confirm`):
 
 Example:
