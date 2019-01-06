@@ -23,7 +23,8 @@ Myrmidon currently depends on:
 
 Copy both shell scripts in the same directory (e.g: ~/bin)
 
-Define your tasks in `.myrmidon-tasks.json` in your home directory.
+Define your tasks in a json file. The default location of the json file will be `$HOME/.myrmidon-tasks.json`, but you can pass an optional argument as a custom path for the configuration file (e.g: `./myrmidon.sh ~/my-custom-path/tasks.json`).
+
 Each task is comprised of a `name`, `command` and whether or not it needs a confirmation screen (`confirm`):
 
 Example:
@@ -63,7 +64,3 @@ For example, in `i3`:
 ```
 bindsym $mod+p exec --no-startup-id ~/bin/myrmidon.sh
 ```
-
-## To-do
-
-- Allow task file to be given via arguments
