@@ -64,3 +64,15 @@ For example, in `i3`:
 ```
 bindsym $mod+p exec --no-startup-id ~/bin/myrmidon.sh
 ```
+
+## Multiple config files
+
+As it is possible to provide an optional location of the config file, you can keep multiple keys for different task "categories", for example:
+
+```
+bindsym $mod+p exec --no-startup-id ~/bin/myrmidon.sh ~/common-tasks.json
+bindsym $mod+Esc exec --no-startup-id ~/bin/myrmidon.sh ~/power-tasks.json
+bindsym $mod+Print exec --no-startup-id ~/bin/myrmidon.sh ~/screenshot-tasks.json
+```
+
+This way, for example, $mod+Esc will now only show tasks related to power (Power off, restart, suspend, etc), as to not pollute the task pool.
