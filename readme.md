@@ -76,3 +76,7 @@ bindsym $mod+Print exec --no-startup-id ~/bin/myrmidon.sh ~/screenshot-tasks.jso
 ```
 
 This way, for example, $mod+Esc will now only show tasks related to power (Power off, restart, suspend, etc), as to not pollute the task pool.
+
+## Contribute
+
+If you feel there's any missing feature you'd like to see in Myrmidon, feel free to propose it or open a pull request!
