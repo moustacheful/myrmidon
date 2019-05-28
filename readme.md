@@ -21,7 +21,7 @@ Myrmidon currently depends on:
 
 ## Installation / defining tasks
 
-Copy both shell scripts in the same directory (e.g: ~/bin)
+Copy both shell scripts in the same directory (e.g: `~/bin`)
 
 Define your tasks in a json file. The default location of the json file will be `$HOME/.myrmidon-tasks.json`, but you can pass an optional argument as a custom path for the configuration file (e.g: `./myrmidon.sh ~/my-custom-path/tasks.json`).
 
