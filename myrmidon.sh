@@ -16,7 +16,7 @@ function print_usage {
   echo "  <tasks filename>          Tasks file, must be enclosed in quotes if contains spaces"
   echo "                            If file not porvided, tasks will be taken from the default list."
   echo ""
-  echo "                            Plase default tasks in:"
+  echo "                            Place default tasks in:"
   echo "                              $tasks_file_default"
   echo ""
   echo ""
@@ -40,7 +40,7 @@ function print_usage {
 if [[ -z "${XDG_CONFIG_HOME}" ]]; then
   config_dir_default="$HOME/.config/myrmidon"
 else
-  config_dir_default="$XDG_CONFIG_HOME/myrmidon"
+  config_dir_default="${XDG_CONFIG_HOME}myrmidon"
 fi
 
 config_file_default="$config_dir_default/config.json"
@@ -104,9 +104,12 @@ confirm=$(echo $task | jq ".confirm")
 
 # Check whether we need confirmation to run this task
 if [[ $confirm == "true" ]]; then
-  # Chain the confirm command before executing the selected command
-  confirm_script="$cwd/confirm.sh 'Confirm $selected?'"
-  eval "$confirm_script && \"$task_command\" > /dev/null &"
+  # Ask for confirmation before executing the selected command
+  confirm_answer=$(echo -e "No\nYes" | rofi -dmenu -i -p "Confirm $selected? ")
+
+  if [ "$confirm_answer" = "Yes" ]; then 
+    eval "\"$task_command\" > /dev/null &"
+  fi
 else
   eval "\"$task_command\" > /dev/null &"
 fi
