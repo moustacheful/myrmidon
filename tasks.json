@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Area screenshot",
+    "unsafe": true,
+    "command": "gnome-screenshot -a"
+  },
+  {
+    "name": "Window screenshot",
+    "command": "gnome-screenshot -w"
+  },
+  {
+    "name": "Power off",
+    "message": "Do you really want to shut down ?",
+    "confirm": true,
+    "command": "systemctl poweroff"
+  },
+  {
+    "name": "Reboot",
+    "confirm": true,
+    "message": "Are you sure you want to reboot ?",
+    "command": "systemctl reboot"
+  },
+  {
+    "name": "Suspend",
+    "confirm": true,
+    "message": "Are you sure you want to suspend ?",
+    "unsafe": true,
+    "command": "systemctl suspend"
+  }
+]
