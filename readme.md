@@ -4,7 +4,7 @@ A dead-simple, tiny task executor for Rofi.
 
 ## What
 
-Myrmidon executes tasks for you, displaying something similar to modern text editor's command palette. You define the task names and commands, and let myrmidon make a fuzzy search list to select and execute tasks.
+Myrmidon executes tasks for you, displaying something similar to modern text editor's command palette. You define the task names and commands, and let Myrmidon make a fuzzy search list to select and execute tasks.
 
 <img align="center" alt="demo" src="https://user-images.githubusercontent.com/4857535/50374333-3d82e800-05cb-11e9-8f14-1338cac3d290.gif"/>
 
@@ -21,11 +21,12 @@ Myrmidon currently depends on:
 
 ## Installation / defining tasks
 
-Copy both shell scripts in the same directory (e.g: ~/bin)
+Copy the shell script in a directory included in your `PATH` (e.g: `~/bin`)
 
 Define your tasks in a json file. The default location of the json file will be `$HOME/.myrmidon-tasks.json`, but you can pass an optional argument as a custom path for the configuration file (e.g: `./myrmidon.sh ~/my-custom-path/tasks.json`).
 
-Each task is comprised of a `name`, `command` and whether or not it needs a confirmation screen (`confirm`):
+Each task is comprised of a `name`, `command` and whether or not it needs a confirmation screen (`confirm`).
+`confirm` can either be just `true` if you only want to use the default, or you can customize it with an object.
 
 Example:
 
@@ -41,7 +42,9 @@ Example:
   },
   {
     "name": "Power off",
-    "confirm": true,
+    "confirm": {
+      "message": "Do you really want to shut down ?"
+    },
     "command": "systemctl poweroff"
   },
   {
@@ -51,7 +54,11 @@ Example:
   },
   {
     "name": "Suspend",
-    "confirm": true,
+    "confirm": {
+      "invert": true,
+      "yes": "Yep",
+      "no": "Nope"
+    },
     "command": "systemctl suspend"
   }
 ]
