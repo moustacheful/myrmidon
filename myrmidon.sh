@@ -26,3 +26,13 @@ if [[ $confirm == "true" ]]; then
 else
   eval "\"$task_command\" > /dev/null &"
 fi
+
+notification=$(echo $task | jq ".notification")
+if [ ! -z "$notification" ]
+then
+    # extended notification text
+    notification_command=$(echo $notification | jq -r '. | "notify-send \"\(.text)\" " ')
+    # add options 
+    notification_command=${notification_command}$(echo $notification | jq --raw-output ' del( . .text ) ' | sed '1d;$d' | sed 's/[", ]//g;s/:/=/;s/^/--/' | xargs)
+  eval "$notification_command > /dev/null &"
+fi
