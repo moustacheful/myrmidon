@@ -67,15 +67,16 @@ bindsym $mod+p exec --no-startup-id ~/bin/myrmidon.sh
 
 ## Multiple config files
 
-As it is possible to provide an optional location of the config file, you can keep multiple keys for different task "categories", for example:
+Myrmidon can read more than one configuration file at once. Any files passed as
+arguments will be merged and presented as a single task list. For example:
 
 ```
-bindsym $mod+p exec --no-startup-id ~/bin/myrmidon.sh ~/common-tasks.json
-bindsym $mod+Esc exec --no-startup-id ~/bin/myrmidon.sh ~/power-tasks.json
-bindsym $mod+Print exec --no-startup-id ~/bin/myrmidon.sh ~/screenshot-tasks.json
+bindsym $mod+p exec --no-startup-id ~/bin/myrmidon.sh \
+  ~/common-tasks.json ~/power-tasks.json ~/screenshot-tasks.json
 ```
 
-This way, for example, $mod+Esc will now only show tasks related to power (Power off, restart, suspend, etc), as to not pollute the task pool.
+This invocation will show every task defined across the three files above. If
+only one file is needed you can still provide a single path as before.
 
 ## Contribute
 
