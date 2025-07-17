@@ -1,13 +1,19 @@
 #!/bin/bash
-cwd=$(echo $(dirname $0))
+cwd=$(dirname "$0")
 
-# Use ~/.myrmidon-tasks.json as default, otherwise use incoming path
-config_file="${1:-"$HOME/.myrmidon-tasks.json"}"
-tasks=$(cat $config_file)
+# Use ~/.myrmidon-tasks.json as default, otherwise use incoming paths
+if [ "$#" -eq 0 ]; then
+  config_files=("$HOME/.myrmidon-tasks.json")
+else
+  config_files=("$@")
+fi
+
+# Merge all provided config files into a single tasks array
+tasks=$(jq -s add "${config_files[@]}")
 
 # Pass tasks to rofi, and get the output as the selected option
-selected=$(echo $tasks | jq -j 'map(.name) | join("\n")' | rofi -dmenu -matching fuzzy -i -p "Search tasks")
-task=$(echo $tasks | jq ".[] | select(.name == \"$selected\")")
+selected=$(printf '%s' "$tasks" | jq -j 'map(.name) | join("\n")' | rofi -dmenu -matching fuzzy -i -p "Search tasks")
+task=$(printf '%s' "$tasks" | jq ".[] | select(.name == \"$selected\")")
 
 # Exit if no task was found
 if [[ $task == "" ]]; then
@@ -15,8 +21,8 @@ if [[ $task == "" ]]; then
   exit 1
 fi
 
-task_command=$(echo $task | jq ".command")
-confirm=$(echo $task | jq ".confirm")
+task_command=$(printf '%s' "$task" | jq -r ".command")
+confirm=$(printf '%s' "$task" | jq -r ".confirm")
 
 # Check whether we need confirmation to run this task
 if [[ $confirm == "true" ]]; then
